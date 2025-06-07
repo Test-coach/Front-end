@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser, clearUser } from './redux/userSlice';
+import Home from './components/home/Home';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ const App = () => {
 
   <button onClick={handleSetUser}>Set User</button>
   <button onClick={handleClearUser}>Clear User</button>
+  <Home/>
 </div>
   );
 };

@@ -21,7 +21,7 @@ const App = () => {
 
   return (
     <div>
-  <h2>User Info</h2>
+  {/* <h2>User Info</h2>
 
   {user && Object.keys(user).length > 0 ? (
     <div>
@@ -33,7 +33,7 @@ const App = () => {
   )}
 
   <button onClick={handleSetUser}>Set User</button>
-  <button onClick={handleClearUser}>Clear User</button>
+  <button onClick={handleClearUser}>Clear User</button> */}
   <Home/>
 </div>
   );

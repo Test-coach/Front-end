@@ -3,7 +3,7 @@ const dummyCourses = [
     title: "SSC CGL Complete Preparation",
     slug: "ssc-cgl-complete-preparation",
     description: "Prepare for the SSC CGL exam with full syllabus coverage and mock tests.",
-    thumbnail: "https://example.com/images/ssc-cgl.jpg",
+    thumbnail: "https://images.pexels.com/photos/406014/pexels-photo-406014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     duration: 60,
     price: { amount: 999, currency: "INR" },
     features: ["Full syllabus", "Mock tests", "Performance analysis"],
@@ -31,7 +31,7 @@ const dummyCourses = [
     title: "SSC CHSL Typing Mastery",
     slug: "ssc-chsl-typing-mastery",
     description: "Focused typing practice for SSC CHSL skill test with live speed tracking.",
-    thumbnail: "https://example.com/images/ssc-chsl.jpg",
+    thumbnail: "https://images.pexels.com/photos/406014/pexels-photo-406014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     duration: 30,
     price: { amount: 499, currency: "INR" },
     features: ["Typing speed tests", "Keyboard shortcuts", "Skill test simulation"],
@@ -59,7 +59,7 @@ const dummyCourses = [
     title: "Delhi Police Constable Exam Guide",
     slug: "delhi-police-constable-exam-guide",
     description: "Complete guide for Delhi Police Constable recruitment with practice sets.",
-    thumbnail: "https://example.com/images/delhi-police.jpg",
+    thumbnail: "https://images.pexels.com/photos/406014/pexels-photo-406014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     duration: 45,
     price: { amount: 799, currency: "INR" },
     features: ["Previous year papers", "Mock tests", "Physical test tips"],
@@ -87,7 +87,7 @@ const dummyCourses = [
     title: "UP Police SI Typing & Paper Practice",
     slug: "up-police-si-typing-paper-practice",
     description: "Typing practice and question bank for UP Police Sub Inspector exam.",
-    thumbnail: "https://example.com/images/up-police.jpg",
+    thumbnail: "https://images.pexels.com/photos/406014/pexels-photo-406014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     duration: 40,
     price: { amount: 699, currency: "INR" },
     features: ["Typing drills", "Law section practice", "Mock tests"],
@@ -110,7 +110,91 @@ const dummyCourses = [
     enrollmentCount: 650,
     rating: { average: 4.2, count: 100 },
     createdBy: "60f7c0d9e1d3c2b1c4a2a8d1"
-  }
+  },
+  {
+    title: "UP Police SI Typing & Paper Practice",
+    slug: "up-police-si-typing-paper-practice",
+    description: "Typing practice and question bank for UP Police Sub Inspector exam.",
+    thumbnail: "https://images.pexels.com/photos/406014/pexels-photo-406014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    duration: 40,
+    price: { amount: 699, currency: "INR" },
+    features: ["Typing drills", "Law section practice", "Mock tests"],
+    category: "government",
+    level: "advanced",
+    tests: [
+      {
+        title: "SI Typing Test",
+        description: "Typing test simulating real exam conditions.",
+        duration: 15,
+        difficulty: "hard",
+        content: "Type the legal terms and sections provided below as fast and accurately as possible.",
+        minWPM: 40,
+        maxErrors: 2
+      }
+    ],
+    requirements: ["Graduation", "Hindi typing skill"],
+    isPublished: true,
+    isFeatured: false,
+    enrollmentCount: 650,
+    rating: { average: 4.2, count: 100 },
+    createdBy: "60f7c0d9e1d3c2b1c4a2a8d1"
+  },
+  {
+    title: "UP Police SI Typing & Paper Practice",
+    slug: "up-police-si-typing-paper-practice",
+    description: "Typing practice and question bank for UP Police Sub Inspector exam.",
+    thumbnail: "https://images.pexels.com/photos/406014/pexels-photo-406014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    duration: 40,
+    price: { amount: 699, currency: "INR" },
+    features: ["Typing drills", "Law section practice", "Mock tests"],
+    category: "government",
+    level: "advanced",
+    tests: [
+      {
+        title: "SI Typing Test",
+        description: "Typing test simulating real exam conditions.",
+        duration: 15,
+        difficulty: "hard",
+        content: "Type the legal terms and sections provided below as fast and accurately as possible.",
+        minWPM: 40,
+        maxErrors: 2
+      }
+    ],
+    requirements: ["Graduation", "Hindi typing skill"],
+    isPublished: true,
+    isFeatured: false,
+    enrollmentCount: 650,
+    rating: { average: 4.2, count: 100 },
+    createdBy: "60f7c0d9e1d3c2b1c4a2a8d1"
+  },
+  {
+    title: "UP Police SI Typing & Paper Practice",
+    slug: "up-police-si-typing-paper-practice",
+    description: "Typing practice and question bank for UP Police Sub Inspector exam.",
+    thumbnail: "https://images.pexels.com/photos/406014/pexels-photo-406014.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    duration: 40,
+    price: { amount: 699, currency: "INR" },
+    features: ["Typing drills", "Law section practice", "Mock tests"],
+    category: "government",
+    level: "advanced",
+    tests: [
+      {
+        title: "SI Typing Test",
+        description: "Typing test simulating real exam conditions.",
+        duration: 15,
+        difficulty: "hard",
+        content: "Type the legal terms and sections provided below as fast and accurately as possible.",
+        minWPM: 40,
+        maxErrors: 2
+      }
+    ],
+    requirements: ["Graduation", "Hindi typing skill"],
+    isPublished: true,
+    isFeatured: false,
+    enrollmentCount: 650,
+    rating: { average: 4.2, count: 100 },
+    createdBy: "60f7c0d9e1d3c2b1c4a2a8d1"
+  },
 ];
 
 export default dummyCourses;

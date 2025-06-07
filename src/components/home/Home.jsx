@@ -1,10 +1,12 @@
 import React from 'react';
-import dummyCourses from '../../utils/dummData';
+import {dummyCourses , dummyTypingTests} from '../../utils/dummData';
 import CourseCard from '../../utils/courseCard/CourseCard';
+import TestCard from '../../utils/testCard/TestCard';
 
 const Home = () => {
   return (
-    <div className="min-h-screen bg-gray-100 px-6 py-10">
+    <>
+    <div className=" bg-gray-100 px-6 py-10">
       <h1 className="text-3xl font-bold text-center mb-8">All Courses</h1>
       <div
         className="grid gap-6"
@@ -15,6 +17,12 @@ const Home = () => {
         ))}
       </div>
     </div>
+    <div>
+      {dummyTypingTests.map((item, index) => (
+          <TestCard key={index} courseTyping={item} />
+        ))}
+    </div>
+    </>
   );
 };
 

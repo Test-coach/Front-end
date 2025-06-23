@@ -1,16 +1,10 @@
+// src/App.jsx
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from './redux/userSlice';
 
-import Home from './components/home/Home';
-import Login from './components/authentication/Login';
-import Register from './components/authentication/Register';
-import Admin from './components/admin/Admin';
-import About from './components/screen/About';
-import Payment from './components/payment/Payment';
-// import About from './components/About';
-// import UserInfo from './components/UserInfo';
+import AppRouter from './router/AppRouter';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -26,24 +20,7 @@ const App = () => {
 
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-         <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-           <Route path="/admin" element={<Admin />} />
-            <Route path="/about" element={<About />} />
-             <Route path="/payment" element={<Payment />} />
-        {/* <Route 
-          path="/user" 
-          element={
-            <UserInfo 
-              user={user} 
-              handleSetUser={handleSetUser} 
-              handleClearUser={handleClearUser} 
-            />
-          } 
-        /> */}
-      </Routes>
+      <AppRouter />
     </Router>
   );
 };

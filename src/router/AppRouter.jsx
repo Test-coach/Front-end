@@ -9,6 +9,7 @@ import Admin from '../components/admin/Admin';
 import About from '../components/screen/About';
 import Payment from '../components/payment/Payment';
 import PrivateRoute from './PrivateRoute';
+import FreeTest from '../components/screen/FreeTest';
 
 const AppRouter = () => {
   return (
@@ -17,6 +18,7 @@ const AppRouter = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/about" element={<About />} />
+      <Route path="/free/test" element={<FreeTest/>}/>
 
       {/* Protected Routes */}
       <Route

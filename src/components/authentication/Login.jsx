@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { CheckCircle, AlertCircle, Mail, Lock, Eye, EyeOff, LogIn } from 'lucide-react';
+import { useNavigate, Link } from 'react-router-dom';
+import {API_URL} from '../../config'
 
 const Login = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -29,7 +32,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        'https://backend-xk3v.onrender.com/auth/login',
+        `${API_URL}/auth/login`,
         formData,
         {
           headers: {
@@ -39,14 +42,14 @@ const Login = () => {
       );
 
       console.log('Login successful:', response.data);
-      setMessage({ 
-        type: 'success', 
-        text: 'Login successful! Welcome back!' 
+      setMessage({
+        type: 'success',
+        text: 'Login successful! Welcome back!'
       });
 
       // Store token in localStorage or cookies
       localStorage.setItem('token', response.data.token);
-      
+
       // Redirect or update app state here
       setTimeout(() => {
         // window.location.href = '/dashboard';
@@ -54,9 +57,9 @@ const Login = () => {
 
     } catch (error) {
       console.error('Login failed:', error.response?.data || error.message);
-      setMessage({ 
-        type: 'error', 
-        text: error.response?.data?.message || 'Login failed. Please check your credentials.' 
+      setMessage({
+        type: 'error',
+        text: error.response?.data?.message || 'Login failed. Please check your credentials.'
       });
     } finally {
       setIsLoading(false);
@@ -75,19 +78,17 @@ const Login = () => {
         </div>
 
         {message.text && (
-          <div className={`mb-6 p-4 rounded-lg flex items-center gap-3 ${
-            message.type === 'success' 
-              ? 'bg-green-50 border border-green-200' 
+          <div className={`mb-6 p-4 rounded-lg flex items-center gap-3 ${message.type === 'success'
+              ? 'bg-green-50 border border-green-200'
               : 'bg-red-50 border border-red-200'
-          }`}>
+            }`}>
             {message.type === 'success' ? (
               <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
             ) : (
               <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
             )}
-            <span className={`text-sm font-medium ${
-              message.type === 'success' ? 'text-green-800' : 'text-red-800'
-            }`}>
+            <span className={`text-sm font-medium ${message.type === 'success' ? 'text-green-800' : 'text-red-800'
+              }`}>
               {message.text}
             </span>
           </div>
@@ -172,20 +173,14 @@ const Login = () => {
         <div className="mt-8 text-center">
           <p className="text-sm text-gray-600">
             Don't have an account?{' '}
-            <a href="#" className="text-indigo-600 hover:text-indigo-700 font-medium">
+            <Link
+              to="/register"
+              className="text-indigo-600 hover:text-indigo-700 font-medium"
+            >
               Create one here
-            </a>
+            </Link>
           </p>
         </div>
-
-        {/* Demo Credentials */}
-        {/* <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-          <p className="text-xs text-gray-600 text-center mb-2">Demo Credentials:</p>
-          <p className="text-xs text-gray-500 text-center">
-            Email: samargupta@example.com<br />
-            Password: Samar@123
-          </p>
-        </div> */}
       </div>
     </div>
   );

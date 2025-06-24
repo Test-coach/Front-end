@@ -1,4 +1,3 @@
-import React from 'react';
 import {dummyCourses , dummyTypingTests} from '../../utils/dummData';
 import CourseCard from '../../utils/courseCard/CourseCard';
 import TestCard from '../../utils/testCard/TestCard';

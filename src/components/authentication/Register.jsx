@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { CheckCircle, AlertCircle, User, Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import {API_URL} from '../../config'
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +10,7 @@ const Register = () => {
     password: '',
     email: '',
   });
+
 
   const [message, setMessage] = useState({ type: '', text: '' });
   const [isLoading, setIsLoading] = useState(false);
@@ -30,7 +33,7 @@ const Register = () => {
 
     try {
       const response = await axios.post(
-        'https://backend-xk3v.onrender.com/auth/register',
+        `${API_URL}/auth/register`,
         formData,
         {
           headers: {
@@ -174,9 +177,10 @@ const Register = () => {
         <div className="mt-8 text-center">
           <p className="text-sm text-gray-600">
             Already have an account?{' '}
-            <a href="#" className="text-indigo-600 hover:text-indigo-700 font-medium">
+            <Link
+              to="/login" className="text-indigo-600 hover:text-indigo-700 font-medium">
               Sign in here
-            </a>
+            </Link>
           </p>
         </div>
       </div>

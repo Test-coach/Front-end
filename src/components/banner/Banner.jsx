@@ -1,11 +1,17 @@
 import React from 'react';
 import { FaArrowRight } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const Banner = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/free/test');
+  };
   return (
     <section className="bg-[#f8fafc] py-16 px-6 md:px-16 rounded-2xl shadow-sm mt-6">
       <div className="max-w-4xl mx-auto text-center">
-        
+
         {/* Headline */}
         <h1 className="text-3xl md:text-5xl font-bold text-slate-700 leading-tight relative inline-block">
           Master Typing Skills for <br />
@@ -21,7 +27,10 @@ const Banner = () => {
 
         {/* CTA Buttons */}
         <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="bg-blue-100 text-blue-500 px-6 py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-blue-200 transition font-medium">
+          <button
+            onClick={handleClick}
+            className="bg-blue-100 text-blue-500 px-6 py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-blue-200 transition font-medium"
+          >
             Take Free Test <FaArrowRight />
           </button>
           <button className="border border-blue-500 text-blue-500 px-6 py-3 rounded-lg hover:bg-blue-100 transition font-medium">

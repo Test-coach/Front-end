@@ -10,14 +10,6 @@ const App = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
 
-  const handleSetUser = () => {
-    dispatch(setUser({ name: 'John', age: 30 }));
-  };
-
-  const handleClearUser = () => {
-    dispatch(setUser({}));
-  };
-
   return (
     <Router>
       <AppRouter />

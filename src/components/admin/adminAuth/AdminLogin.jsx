@@ -182,7 +182,7 @@ const AdminLogin = () => {
                     <p className="text-sm text-gray-600">
                         Don't have an account?{' '}
                         <Link
-                            to="/register"
+                            to="/admin/register"
                             className="text-indigo-600 hover:text-indigo-700 font-medium"
                         >
                             Create one here

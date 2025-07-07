@@ -178,7 +178,7 @@ const AdminRegister = () => {
           <p className="text-sm text-gray-600">
             Already have an account?{' '}
             <Link
-              to="/login" className="text-indigo-600 hover:text-indigo-700 font-medium">
+              to="/admin/login" className="text-indigo-600 hover:text-indigo-700 font-medium">
               Sign in here
             </Link>
           </p>

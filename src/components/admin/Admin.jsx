@@ -15,15 +15,29 @@ const Admin = () => {
     navigate('/admin/login');
   };
 
+  const handleCreateCourse = () => {
+    navigate('/admin/create/course');
+  };
+
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
-      <button
-        onClick={handleLogout}
-        className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
-      >
-        Logout
-      </button>
+
+      <div className="flex gap-4 mb-4">
+        <button
+          onClick={handleCreateCourse}
+          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        >
+          Create Course
+        </button>
+
+        <button
+          onClick={handleLogout}
+          className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+        >
+          Logout
+        </button>
+      </div>
     </div>
   );
 };

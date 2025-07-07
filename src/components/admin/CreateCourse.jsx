@@ -19,6 +19,7 @@ const CreateCourse = () => {
       { name: '', duration: '' },
     ],
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -57,6 +58,7 @@ const CreateCourse = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const payload = {
         ...formData,
@@ -68,19 +70,30 @@ const CreateCourse = () => {
           duration: Number(test.duration)
         })),
       };
-      console.log("payload",  payload)
+      console.log("payload", payload)
 
       const res = await axiosInstance.post('/admin/exams', payload);
       console.log('Exam created:', res.data);
       alert('Exam created successfully');
+
+      setFormData({
+        title: '',
+        description: '',
+        price: '',
+        discountPrice: '',
+        validityMonths: '',
+        tests: [{ title: '', duration: '' }],
+      });
+
     } catch (error) {
       console.error('Error creating exam:', error.response?.data || error.message);
       alert('Failed to create exam');
     }
+    setIsLoading(false);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-6 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="bg-white rounded-2xl shadow-xl p-8">
           <div className="mb-8 text-center">
@@ -99,14 +112,22 @@ const CreateCourse = () => {
                   <FileText className="w-4 h-4 mr-2 text-blue-500" />
                   Name *
                 </label>
-                <input
+                <select
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white"
-                  placeholder="Enter exam name"
-                />
+                >
+                  <option value="">Select exam name</option>
+                  <option value="JUDICIARY">JUDICIARY</option>
+                  <option value="TEACHER">TEACHER</option>
+                  <option value="SSC">SSC</option>
+                  <option value="CGL">CGL</option>
+                  <option value="BANKING">BANKING</option>
+                  <option value="RAILWAY">RAILWAY</option>
+                  <option value="DEFENSE">DEFENSE</option>
+                </select>
               </div>
 
               <div className="space-y-2">
@@ -318,11 +339,24 @@ const CreateCourse = () => {
               <button
                 type="submit"
                 onClick={handleSubmit}
-                className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-4 px-6 rounded-lg font-medium text-lg hover:from-blue-600 hover:to-indigo-700 focus:ring-4 focus:ring-blue-200 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                disabled={isLoading}
+                className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
               >
-                Create Exam
+                {isLoading ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    Creating Exam...
+                  </>
+                ) : (
+                  <>
+                    {/* Optionally add an icon component here */}
+                    <span>Create Exam</span>
+                  </>
+                )}
               </button>
             </div>
+
+
           </div>
         </div>
       </div>

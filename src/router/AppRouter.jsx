@@ -11,6 +11,7 @@ import AdminLogin from '../components/admin/adminAuth/AdminLogin';
 import AdminRegister from '../components/admin/adminAuth/AdminRegister';
 import CreateCourse from '../components/admin/CreateCourse';
 import Admin from '../components/admin/Admin';
+import UserDashBoard from '../components/user/UserDashBoard';
 
 const AppRouter = () => {
   return (
@@ -26,6 +27,7 @@ const AppRouter = () => {
 
       {/* Protected User Routes */}
       <Route path="/payment" element={<PrivateRoute><Payment /></PrivateRoute>} />
+      <Route path="/home" element={<PrivateRoute><UserDashBoard /></PrivateRoute>} />
 
       {/* Protected Admin Routes */}
       <Route path="/admin" element={<PrivateRoute adminOnly><Admin /></PrivateRoute>} />

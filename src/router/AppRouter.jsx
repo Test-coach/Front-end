@@ -15,88 +15,22 @@ import Admin from '../components/admin/Admin';
 const AppRouter = () => {
   return (
     <Routes>
+      {/* Public Routes */}
       <Route path="/" element={<Home />} />
-      <Route
-        path="/login"
-        element={
-          <PublicRoutes>
-            <Login />
-          </PublicRoutes>
-        }
-      />
-      <Route
-        path="/register"
-        element={
-          <PublicRoutes>
-            <Register />
-          </PublicRoutes>
-        }
-      />
-      <Route
-        path="/admin/login"
-        element={
-          <PublicRoutes>
-            <AdminLogin />
-          </PublicRoutes>
-        }
-      />
-      <Route
-        path="/admin/register"
-        element={
-          <PublicRoutes>
-            <AdminRegister />
-          </PublicRoutes>
-        }
-      />
+      <Route path="/login" element={<PublicRoutes><Login /></PublicRoutes>} />
+      <Route path="/register" element={<PublicRoutes><Register /></PublicRoutes>} />
+      <Route path="/admin/login" element={<PublicRoutes><AdminLogin /></PublicRoutes>} />
+      <Route path="/admin/register" element={<PublicRoutes><AdminRegister /></PublicRoutes>} />
       <Route path="/about" element={<About />} />
       <Route path="/free/test" element={<FreeTest />} />
-      <Route path='/admin' element={<Admin />} />
-      <Route path='/admin/create/exam' element={<CreateCourse />} />
-      <Route path="/payment" element={
-        <PrivateRoute>
-          <Payment />
-        </PrivateRoute>
-      }
-      />
 
+      {/* Protected User Routes */}
+      <Route path="/payment" element={<PrivateRoute><Payment /></PrivateRoute>} />
 
-      {/* Protected Routes */}
-      <Route
-        path="/admin"
-        element={
-          <PrivateRoute adminOnly>
-            <Admin />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/admin/create/exam"
-        element={
-          <PrivateRoute adminOnly>
-            <CreateCourse />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/payment"
-        element={
-          <PrivateRoute>
-            <Payment />
-          </PrivateRoute>
-        }
-      />
-
-      <Route
-        path="/payment"
-        element={
-          <PrivateRoute>
-            <Payment />
-          </PrivateRoute>
-        }
-      />
+      {/* Protected Admin Routes */}
+      <Route path="/admin" element={<PrivateRoute adminOnly><Admin /></PrivateRoute>} />
+      <Route path="/admin/create/course" element={<PrivateRoute adminOnly><CreateCourse /></PrivateRoute>} />
     </Routes>
-
-
   );
 };
 

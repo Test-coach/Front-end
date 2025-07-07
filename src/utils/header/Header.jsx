@@ -8,8 +8,8 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const username = useSelector((state) => state.auth.username);
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const username = useSelector((state) => state.auth.user.username);
+  const isAuthenticated = useSelector((state) => state.auth.user.isAuthenticated);
 
   const handleLogout = () => {
     localStorage.removeItem('token');

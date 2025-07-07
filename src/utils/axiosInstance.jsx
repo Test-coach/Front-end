@@ -1,17 +1,18 @@
 // src/utils/axiosInstance.ts
 import axios from 'axios';
-import { API_URL } from '@/config'; // Make sure API_URL is defined appropriately
+import { API_URL } from '../config';
 
 // Create Axios instance
 const axiosInstance = axios.create({
   baseURL: API_URL,
-  timeout: 10000,
+  timeout: 100000,
 });
 
 // Add a request interceptor to include token from localStorage
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('admin_token');
+    console.log("abc", token)
     if (token) {
       config.headers['Authorization'] = `Bearer ${token}`;
     }

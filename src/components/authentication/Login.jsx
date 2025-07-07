@@ -3,9 +3,12 @@ import axios from 'axios';
 import { CheckCircle, AlertCircle, Mail, Lock, Eye, EyeOff, LogIn } from 'lucide-react';
 import { useNavigate, Link } from 'react-router-dom';
 import {API_URL} from '../../config'
+import { loginUser} from '../../redux/authSlice';
+import { useDispatch } from 'react-redux';
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -41,18 +44,23 @@ const Login = () => {
         }
       );
 
-      console.log('Login successful:', response.data);
+      const token = response.data.data.token;
+      const username = response.data.data.sendData.username;
+
+      console.log('Login successful:', response.data.data.token);
       setMessage({
         type: 'success',
         text: 'Login successful! Welcome back!'
       });
 
       // Store token in localStorage or cookies
-      localStorage.setItem('token', response.data.token);
+     localStorage.setItem('token', token);
+     localStorage.setItem('username', username);
+       dispatch(loginUser({ token, username }));
 
       // Redirect or update app state here
       setTimeout(() => {
-        // window.location.href = '/dashboard';
+       navigate('/')
       }, 2000);
 
     } catch (error) {

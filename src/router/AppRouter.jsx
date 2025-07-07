@@ -1,31 +1,79 @@
-// src/router/AppRouter.jsx
-import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-
 import Home from '../components/home/Home';
 import Login from '../components/authentication/Login';
 import Register from '../components/authentication/Register';
-import Admin from '../components/admin/Admin';
 import About from '../components/screen/About';
 import Payment from '../components/payment/Payment';
 import PrivateRoute from './PrivateRoute';
 import FreeTest from '../components/screen/FreeTest';
+import PublicRoutes from './PublicRoutes';
+import AdminLogin from '../components/admin/adminAuth/AdminLogin';
+import AdminRegister from '../components/admin/adminAuth/AdminRegister';
+import CreateCourse from '../components/admin/CreateCourse';
+import Admin from '../components/admin/Admin';
 
 const AppRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
+      <Route
+        path="/login"
+        element={
+          <PublicRoutes>
+            <Login />
+          </PublicRoutes>
+        }
+      />
+      <Route
+        path="/register"
+        element={
+          <PublicRoutes>
+            <Register />
+          </PublicRoutes>
+        }
+      />
+      <Route
+        path="/admin/login"
+        element={
+          <PublicRoutes>
+            <AdminLogin />
+          </PublicRoutes>
+        }
+      />
+      <Route
+        path="/admin/register"
+        element={
+          <PublicRoutes>
+            <AdminRegister />
+          </PublicRoutes>
+        }
+      />
       <Route path="/about" element={<About />} />
-      <Route path="/free/test" element={<FreeTest/>}/>
+      <Route path="/free/test" element={<FreeTest />} />
+      <Route path='/admin' element={<Admin />} />
+      <Route path='/admin/create/exam' element={<CreateCourse />} />
+      <Route path="/payment" element={
+        <PrivateRoute>
+          <Payment />
+        </PrivateRoute>
+      }
+      />
+
 
       {/* Protected Routes */}
       <Route
         path="/admin"
         element={
-          <PrivateRoute>
+          <PrivateRoute adminOnly>
             <Admin />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/admin/create/exam"
+        element={
+          <PrivateRoute adminOnly>
+            <CreateCourse />
           </PrivateRoute>
         }
       />
@@ -37,7 +85,18 @@ const AppRouter = () => {
           </PrivateRoute>
         }
       />
+
+      <Route
+        path="/payment"
+        element={
+          <PrivateRoute>
+            <Payment />
+          </PrivateRoute>
+        }
+      />
     </Routes>
+
+
   );
 };
 

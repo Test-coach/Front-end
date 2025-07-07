@@ -1,17 +1,25 @@
-// src/router/PrivateRoute.jsx
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-const PrivateRoute = ({ children }) => {
-  const user = useSelector((state) => state.user.user);
+const PrivateRoute = ({ children, adminOnly = false }) => {
+  const { user, admin } = useSelector((state) => state.auth);
 
-  if (!user || !user.name) {
-    // Redirect to login if user is not authenticated
-    return <Navigate to="/login" replace />;
+  if (adminOnly) {
+    const isAdminAuthenticated =
+      admin?.isAuthenticated || localStorage.getItem('admin_token');
+    if (!isAdminAuthenticated) {
+      return <Navigate to="/admin/login" replace />;
+    }
+    return children;
+  } else {
+    const isUserAuthenticated =
+      user?.isAuthenticated || localStorage.getItem('token');
+    if (!isUserAuthenticated) {
+      return <Navigate to="/login" replace />;
+    }
+    return children;
   }
-
-  return children;
 };
 
 export default PrivateRoute;

@@ -23,7 +23,8 @@ const AppRouter = () => {
       <Route path="/admin/register" element={<PublicRoutes><AdminRegister /></PublicRoutes>} />
       <Route path="/about" element={<About />} />
       <Route path="/free/test" element={<FreeTest />} />
-
+      <Route path="/payment" element={<Payment />} />
+      
       {/* Protected User Routes */}
       <Route path="/payment" element={<PrivateRoute><Payment /></PrivateRoute>} />
 

@@ -178,9 +178,56 @@ const FreeTest = () => {
             <textarea
               ref={inputRef}
               value={userInput}
-              onChange={(e) => handleInputChange(e.target.value)}
+              onChange={(e) => {
+                // Only allow adding characters, not removing or editing
+                if (e.target.value.length > userInput.length && e.target.selectionStart === userInput.length + 1) {
+                  handleInputChange(e.target.value);
+                }
+              }}
+              onKeyDown={(e) => {
+                // List of keys to block
+                const blockedKeys = [
+                  'Backspace', 'Delete',
+                  'ArrowLeft', 'ArrowUp', 'ArrowRight', 'ArrowDown',
+                  'Home', 'End', 'PageUp', 'PageDown',
+                ];
+                // Block F1-F12
+                if (/^F\d{1,2}$/.test(e.key)) {
+                  e.preventDefault();
+                  return;
+                }
+                // Block listed keys
+                if (blockedKeys.includes(e.key)) {
+                  e.preventDefault();
+                  return;
+                }
+                // Block Ctrl/Meta + A/C/V/X/Z (Select All, Copy, Paste, Cut, Undo)
+                if ((e.ctrlKey || e.metaKey) && ['a','A','c','C','v','V','x','X','z','Z'].includes(e.key)) {
+                  e.preventDefault();
+                  return;
+                }
+              }}
+              onSelect={(e) => {
+                // Only block selection after test has started
+                if (startTime && (e.target.selectionStart !== userInput.length || e.target.selectionEnd !== userInput.length)) {
+                  e.target.setSelectionRange(userInput.length, userInput.length);
+                }
+              }}
+              onMouseDown={(e) => {
+                // Only block mouse after test has started
+                if (startTime) {
+                  e.preventDefault();
+                  if (inputRef.current) {
+                    inputRef.current.setSelectionRange(userInput.length, userInput.length);
+                  }
+                }
+              }}
+              onContextMenu={(e) => {
+                // Prevent right-click context menu
+                e.preventDefault();
+              }}
               placeholder="Click here and start typing to begin the test..."
-              className="w-full h-40 p-6 border-2 border-slate-200 rounded-2xl font-mono text-lg resize-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 transition-all duration-200 bg-white/70 backdrop-blur-sm"
+              className="w-full h-40 max-h-72 p-6 border-2 border-slate-200 rounded-2xl font-mono text-lg resize-none overflow-y-auto focus:border-blue-500 focus:ring-4 focus:ring-blue-500/20 transition-all duration-200 bg-white/70 backdrop-blur-sm"
               disabled={isTestComplete}
             />
           </div>

@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import axiosInstance from '../../utils/axiosInstance';
 import { Plus, X, BookOpen, DollarSign, Calendar, Globe, FileText, Image, Clock } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
-const CreateCourse = () => {
+const EditCourse = () => {
+  const location = useLocation();
+  const { course } = location.state || {};
+  const navigate = useNavigate()
+
   const [formData, setFormData] = useState({
     name: '',
     slug: '',
@@ -15,10 +20,32 @@ const CreateCourse = () => {
     validityMonths: '',
     thumbnailUrl: '',
     coverImageUrl: '',
-    tests: [
-      { name: '', duration: '' },
-    ],
+    tests: [{ name: '', duration: '' }],
   });
+
+  useEffect(() => {
+    if (course) {
+      setFormData({
+        name: course.name || '',
+        slug: course.slug || '',
+        examType: course.examType || 'OTHER',
+        description: course.description || '',
+        price: course.price?.toString() || '',
+        discountPrice: course.discountPrice?.toString() || '',
+        language: course.language || 'en',
+        validityMonths: course.validityMonths?.toString() || '',
+        thumbnailUrl: course.thumbnailUrl || '',
+        coverImageUrl: course.coverImageUrl || '',
+        tests: course.tests?.length
+          ? course.tests.map((t) => ({
+              name: t.name || '',
+              duration: t.duration?.toString() || '',
+            }))
+          : [{ name: '', duration: '' }],
+      });
+    }
+  }, [course]);
+
   const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -72,18 +99,10 @@ const CreateCourse = () => {
       };
       console.log("payload", payload)
 
-      const res = await axiosInstance.post('/admin/courses', payload);
-      console.log('Exam created:', res.data);
-      alert('Exam created successfully');
+      const res = await axiosInstance.put(`/admin/courses/${course._id}`, payload);
+      alert(res , 'Course updated successfully');
+      navigate('/admin/course')
 
-      setFormData({
-        title: '',
-        description: '',
-        price: '',
-        discountPrice: '',
-        validityMonths: '',
-        tests: [{ title: '', duration: '' }],
-      });
 
     } catch (error) {
       console.error('Error creating exam:', error.response?.data || error.message);
@@ -345,12 +364,12 @@ const CreateCourse = () => {
                 {isLoading ? (
                   <>
                     <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    Creating Exam...
+                    Editing Exam...
                   </>
                 ) : (
                   <>
                     {/* Optionally add an icon component here */}
-                    <span>Create Exam</span>
+                    <span>Edit Exam</span>
                   </>
                 )}
               </button>
@@ -364,4 +383,4 @@ const CreateCourse = () => {
   );
 };
 
-export default CreateCourse;
+export default EditCourse;

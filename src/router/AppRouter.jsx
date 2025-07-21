@@ -12,6 +12,8 @@ import AdminRegister from '../components/admin/adminAuth/AdminRegister';
 import CreateCourse from '../components/admin/CreateCourse';
 import Admin from '../components/admin/Admin';
 import UserDashBoard from '../components/user/UserDashBoard';
+import Courses from '../components/admin/Courses';
+import EditCourse from '../components/admin/EditCourse';
 
 const AppRouter = () => {
   return (
@@ -33,6 +35,9 @@ const AppRouter = () => {
       {/* Protected Admin Routes */}
       <Route path="/admin" element={<PrivateRoute adminOnly><Admin /></PrivateRoute>} />
       <Route path="/admin/create/course" element={<PrivateRoute adminOnly><CreateCourse /></PrivateRoute>} />
+      <Route path="/admin/course" element={<PrivateRoute adminOnly><Courses/></PrivateRoute>} />
+      <Route path="/admin/course/edit" element={<PrivateRoute adminOnly><EditCourse/></PrivateRoute>} />
+
     </Routes>
   );
 };

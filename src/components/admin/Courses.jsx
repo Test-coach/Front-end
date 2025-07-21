@@ -12,9 +12,7 @@ const Courses = () => {
             console.log("res" , res.data);
             setCourses(res.data);
         }
-
         fetchCourses();
-
     },[])
 
     return (

@@ -374,8 +374,6 @@ const EditCourse = () => {
                 )}
               </button>
             </div>
-
-
           </div>
         </div>
       </div>
